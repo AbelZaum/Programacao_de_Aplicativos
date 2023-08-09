@@ -1,0 +1,54 @@
+package calendariopedro;
+
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+public class CalendarioPedro {
+
+    public static void main(String[] args) {
+        int opcao;
+
+        do {
+            String dataInformada = JOptionPane.showInputDialog(null, "Informe a data (DD/MM/AAAA)", "DATA", JOptionPane.PLAIN_MESSAGE);
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+            Date data;
+            data = sdf.parse(dataInformada, new ParsePosition(0));
+
+            Calendar c = Calendar.getInstance();
+            c.setTime(data);
+            int diaSemana = c.get(Calendar.DAY_OF_WEEK);
+
+            switch (diaSemana) {
+                case Calendar.SUNDAY:
+                    JOptionPane.showMessageDialog(null, "Domingo", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+                case Calendar.MONDAY:
+                    JOptionPane.showMessageDialog(null, "Segunda-Feira", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+                case Calendar.TUESDAY:
+                    JOptionPane.showMessageDialog(null, "Terça-Feira", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+                case Calendar.WEDNESDAY:
+                    JOptionPane.showMessageDialog(null, "Quarta-Feira", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+                case Calendar.THURSDAY:
+                    JOptionPane.showMessageDialog(null, "Quinta-Feira", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+                case Calendar.FRIDAY:
+                    JOptionPane.showMessageDialog(null, "Sexta-Feira", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+                case Calendar.SATURDAY:
+                    JOptionPane.showMessageDialog(null, "Sabado", "DIAS DA SEMANA", JOptionPane.PLAIN_MESSAGE);
+                    break;
+            }
+
+            opcao = Integer.parseInt(JOptionPane.showInputDialog("Quer continuar verificando as datas? (1-sim ou 2-não)"));
+
+        } while (opcao == 1);
+    }
+
+}
