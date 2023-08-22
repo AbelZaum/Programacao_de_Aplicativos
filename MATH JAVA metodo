@@ -1,0 +1,112 @@
+
+package math;
+
+import javax.swing.JOptionPane;
+import java.lang.Math;
+
+public class atividadeMath {
+
+   
+  
+    public static void main(String[] args) {
+        
+        double num1 = 0;
+        double num2 = 0;
+          
+        num1 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero X"));
+        num2 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero Y"));
+    
+    
+        JOptionPane.showMessageDialog(null, Math.max(num1, num2));
+    
+    } 
+
+}
+//-----------------------
+package math;
+
+import javax.swing.JOptionPane;
+
+public class atividadeMath2 {
+
+    public static void main(String[] args) {
+
+        double num1 = 0;
+        double num2 = 0;
+          
+        num1 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero X"));
+        num2 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero Y"));
+    
+    
+        JOptionPane.showMessageDialog(null, Math.min(num1, num2));
+    
+    } 
+
+}
+
+//-------------------
+
+
+package math;
+
+import javax.swing.JOptionPane;
+
+
+public class atividadeMath3 {
+    
+    public static void main(String[] args) {
+        
+        double num1 = 0;
+        double num2 = 0;
+          
+        num1 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero X"));
+        num2 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero Y"));
+    
+    
+      JOptionPane.showMessageDialog(null, Math.sqrt( num1));
+      JOptionPane.showMessageDialog(null, Math.sqrt( num2));  
+        
+        
+        
+    }
+}
+//-------------------
+
+
+package math;
+
+import javax.swing.JOptionPane;
+
+public class atividadeMath4 {
+
+    public static void main(String[] args) {
+
+        double num1 = 0;
+        double num2 = 0;
+
+        num1 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero X"));
+        num2 = Double.parseDouble(JOptionPane.showInputDialog("Informe o numero Y"));
+
+        JOptionPane.showMessageDialog(null, Math.pow(num1, num2));
+        JOptionPane.showMessageDialog(null, Math.sqrt(num2));
+
+    }
+}
+
+//-----------------
+
+package math;
+
+import javax.swing.JOptionPane;
+
+public class atividadeMath5 {
+
+    public static void main(String[] args) {
+
+        int num1 = (int) (Math.random() * 11);
+
+        JOptionPane.showMessageDialog(null, "Numero aleatorio " + num1);
+
+    }
+}
+//-----------------
