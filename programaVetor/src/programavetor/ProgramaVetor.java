@@ -4,8 +4,8 @@ import javax.swing.JOptionPane;
 
 public class ProgramaVetor {
 
-    private static int[] vetor;
-    private static int tamanho;
+    static int[] vetor;
+    static int tamanho;
 
     public static void main(String[] args) {
 
@@ -26,21 +26,20 @@ public class ProgramaVetor {
                 case 1:
                     carregarVetor();
                     break;
-
                 case 2:
                     listarVetor();
                     break;
                 case 3:
-
+                    exibirPares();
                     break;
                 case 4:
-
+                    exibirImpares();
                     break;
                 case 5:
-
+                    contarParesPosicoesImpares();
                     break;
                 case 6:
-
+                    contarImparesPosicoesPares();
                     break;
 
                 case 7:
@@ -59,9 +58,8 @@ public class ProgramaVetor {
 
     public static void carregarVetor() {
 
-        vetor = new int[tamanho];
-
         tamanho = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe o tamanho do vetor", "INFORME", JOptionPane.PLAIN_MESSAGE));
+        vetor = new int[tamanho];
 
         for (int i = 0; i < tamanho; i++) {
 
@@ -71,11 +69,86 @@ public class ProgramaVetor {
     }
 
     public static void listarVetor() {
-        
-        
+
+        if (vetor == null) {
+
+            JOptionPane.showMessageDialog(null, "O vetor nao foi carregado ainda", "LISTA", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Conteudo do vetor:", "LISTA", JOptionPane.PLAIN_MESSAGE);
+        }
+        for (int i = 0; i < tamanho; i++) {
+
+            JOptionPane.showMessageDialog(null, vetor[i] + "");
+        }
+
     }
-    
-    
-    
-    
+
+    public static void exibirPares() {
+
+        JOptionPane.showMessageDialog(null, "Numeros pares do vetor", "PARES", JOptionPane.PLAIN_MESSAGE);
+
+        for (int i = 0; i < tamanho; i++) {
+
+            if (vetor[i] % 2 == 0) {
+
+                JOptionPane.showMessageDialog(null, vetor[i] + "");
+
+            }
+
+        }
+
+    }
+
+    public static void exibirImpares() {
+
+        JOptionPane.showMessageDialog(null, "Numeros impares do vetor", "IMPARES", JOptionPane.PLAIN_MESSAGE);
+
+        for (int i = 0; i < tamanho; i++) {
+
+            if (vetor[i] % 2 != 0) {
+
+                JOptionPane.showMessageDialog(null, vetor[i] + "");
+
+            }
+        }
+
+    }
+
+    public static void contarParesPosicoesImpares() {
+
+        int cont = 0;
+
+        for (int i = 1; i < tamanho; i += 2) {
+
+            if (vetor[i] % 2 == 0) {
+
+                cont++;
+
+            }
+
+        }
+
+        JOptionPane.showMessageDialog(null, "Quantidades de numeros pares nas posições impares: " + cont);
+
+    }
+
+    public static void contarImparesPosicoesPares() {
+
+        int cont = 0;
+
+        for (int i = 1; i < tamanho; i += 2) {
+
+            if (vetor[i] % 2 == 0) {
+
+                cont++;
+
+            }
+
+        }
+
+        JOptionPane.showMessageDialog(null, "Quantidades de numeros impares nas posições pares: " + cont);
+
+    }
 }
