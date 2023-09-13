@@ -1,0 +1,100 @@
+package gestaodetarefas;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+class Tarefa {
+
+    String titulo;
+    String descricao;
+    Date dataVencimento;
+
+    public Tarefa(String titulo, String descricao, Date dataVencimento) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+        this.dataVencimento = dataVencimento;
+    }
+
+    public String getTitulo() {
+
+        return titulo;
+
+    }
+
+    public String getDescricao() {
+
+        return descricao;
+
+    }
+
+    public Date getDataVencimento() {
+
+        return dataVencimento;
+
+    }
+
+}
+
+public class GestaoDeTarefas {
+
+    static ArrayList<Tarefa> listaTarefas = new ArrayList<>();
+    static SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+    public static void main(String[] args) {
+
+        while (true) {
+            Object[] opcoes = {"Cadastro de Tarefas", "Vizualizar Tarefas", "Atualizar a Tarefa", "Excluir Tarefa", "Data de Vencimento das Tarefas", "Sair"};
+
+            Object escolha = JOptionPane.showInputDialog(null, "Sistema de Gestão de Tarefas", "Menu", JOptionPane.INFORMATION_MESSAGE, null, opcoes, opcoes[0]);
+
+            String escolhaOpcao = (String) escolha;
+
+            switch (escolhaOpcao) {
+                case "Cadastro de Tarefas":           
+                    cadastrarTarefa();
+                    
+                    break;
+                case "Vizualizar Tarefas":
+
+                    break;
+                case "Atualizar a Tarefa":
+
+                    break;
+
+                case "Excluir Tarefa":
+
+                    break;
+
+                case "Data de Vencimento das Tarefas":
+
+                    break;
+
+                case "Sair":
+
+                    JOptionPane.showMessageDialog(null, "Saindo do Programa!", "ENCERRANDO", JOptionPane.INFORMATION_MESSAGE);
+                    System.exit(0);
+                    break;
+                default:
+
+            }
+
+        }
+
+    }
+
+    public static void cadastrarTarefa() {
+        
+        
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+}
