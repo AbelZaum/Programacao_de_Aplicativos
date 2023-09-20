@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-
+import java.text.ParseException;
 // Classe que representa uma tarefa
 class Tarefa {
 
@@ -37,6 +37,18 @@ class Tarefa {
 
     }
 
+    void tituloNovo(String novoTitulo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void descricao(String novaDescricao) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    void DataVencimento(Date novaDataVencimento) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
 
 public class GestaoDeTarefas {
@@ -64,7 +76,7 @@ public class GestaoDeTarefas {
                     listarTarefas();
                     break;
                 case "Atualizar a Tarefa":
-
+                    atualizarTarefa();
                     break;
 
                 case "Excluir Tarefa":
@@ -88,7 +100,7 @@ public class GestaoDeTarefas {
 
     }
 
-    private static void cadastrarTarefa() {
+    public static void cadastrarTarefa() {
         // Solicita ao usuário as informações da nova tarefa
         String titulo = JOptionPane.showInputDialog("Digite o título da tarefa:");
         String descricao = JOptionPane.showInputDialog("Digite a descrição da tarefa:");
@@ -111,7 +123,7 @@ public class GestaoDeTarefas {
         }
     }
 
-    private static void listarTarefas() {
+    public static void listarTarefas() {
          // Se a lista de tarefas estiver vazia, exibe uma mensagem informativa
         if (listaTarefas.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas.");
@@ -128,5 +140,29 @@ public class GestaoDeTarefas {
         }
          // Exibe a lista de tarefas    
         JOptionPane.showMessageDialog(null, lista.toString());
+    }
+    
+     public static void atualizarTarefa() {
+        int indice = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da tarefa que deseja atualizar:")) - 1;
+
+        if (indice >= 0 && indice < listaTarefas.size()) {
+            String novoTitulo = JOptionPane.showInputDialog("Digite o novo título:");
+            String novaDescricao = JOptionPane.showInputDialog("Digite a nova descrição:");
+            String novaDataStr = JOptionPane.showInputDialog("Digite a nova data de vencimento (dd/MM/yyyy): ");
+
+            try {
+                Date novaDataVencimento = dateFormat.parse(novaDataStr);
+                Tarefa tarefa = listaTarefas.get(indice);
+                tarefa.titulo = novoTitulo;
+                tarefa.descricao = novaDescricao;
+                tarefa.dataVencimento = novaDataVencimento;
+                JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso.");
+                     
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Data inválida. Verifique a data");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
+        }        
     }
 }
