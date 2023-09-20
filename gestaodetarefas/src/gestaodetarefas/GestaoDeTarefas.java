@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import java.text.ParseException;
 // Classe que representa uma tarefa
+
 class Tarefa {
 
     String titulo;
@@ -84,7 +85,7 @@ public class GestaoDeTarefas {
                     break;
 
                 case "Data de Vencimento das Tarefas":
-
+                    VencimentoTarefas();
                     break;
 
                 case "Sair":
@@ -112,7 +113,7 @@ public class GestaoDeTarefas {
 
             // Cria um objeto Tarefa com as informações fornecidas
             Tarefa tarefa = new Tarefa(titulo, descricao, dataVencimento);
-            
+
             // Adiciona a tarefa à lista de tarefas
             listaTarefas.add(tarefa);
 
@@ -124,13 +125,13 @@ public class GestaoDeTarefas {
     }
 
     public static void listarTarefas() {
-         // Se a lista de tarefas estiver vazia, exibe uma mensagem informativa
+        // Se a lista de tarefas estiver vazia, exibe uma mensagem informativa
         if (listaTarefas.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas.");
             return;
         }
 
-         // Constrói uma lista formatada com todas as tarefas cadastradas
+        // Constrói uma lista formatada com todas as tarefas cadastradas
         StringBuilder lista = new StringBuilder("Lista de Tarefas:\n");
 
         for (Tarefa tarefa : listaTarefas) {
@@ -138,11 +139,11 @@ public class GestaoDeTarefas {
             lista.append("Descrição: ").append(tarefa.getDescricao()).append("\n");
             lista.append("Data de Vencimento: ").append(dateFormat.format(tarefa.getDataVencimento())).append("\n\n");
         }
-         // Exibe a lista de tarefas    
+        // Exibe a lista de tarefas    
         JOptionPane.showMessageDialog(null, lista.toString());
     }
-    
-     public static void atualizarTarefa() {
+
+    public static void atualizarTarefa() {
         int indice = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da tarefa que deseja atualizar:")) - 1;
 
         if (indice >= 0 && indice < listaTarefas.size()) {
@@ -157,12 +158,41 @@ public class GestaoDeTarefas {
                 tarefa.descricao = novaDescricao;
                 tarefa.dataVencimento = novaDataVencimento;
                 JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso.");
-                     
+
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Data inválida. Verifique a data");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
-        }        
+        }
+    }
+
+    public static void VencimentoTarefas() {
+        // Se a lista de tarefas estiver vazia, exibe uma mensagem informativa
+        if (listaTarefas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas.");
+        }
+        //Cria um objeto que verifica a data atual do computador
+        Date dataAtual = new Date();
+
+        // Constrói uma lista formatada com as tarefas vencidas
+        StringBuilder tarefasVencidas = new StringBuilder("Tarefas Vencidas:\n");
+        //Cria uma variavel String 
+
+        for (Tarefa tarefa : listaTarefas) {
+            if (tarefa.getDataVencimento().before(dataAtual)) {
+                tarefasVencidas.append("Título: ").append(tarefa.getTitulo()).append("\n");
+                tarefasVencidas.append("Descrição: ").append(tarefa.getDescricao()).append("\n");
+                tarefasVencidas.append("Data de Vencimento: ").append(dateFormat.format(tarefa.getDataVencimento())).append("\n\n");
+            }
+        }
+
+        for (Tarefa tarefa : listaTarefas) {
+            // Exibe as listas de tarefas vencidas e não vencidas
+            if (tarefa.getDataVencimento().before(dataAtual)) {
+                JOptionPane.showMessageDialog(null, tarefasVencidas.toString(), "Tarefas Vencidas", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        }
     }
 }
