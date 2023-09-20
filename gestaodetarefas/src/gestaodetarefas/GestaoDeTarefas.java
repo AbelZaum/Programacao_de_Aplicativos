@@ -38,18 +38,6 @@ class Tarefa {
 
     }
 
-    void tituloNovo(String novoTitulo) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    void descricao(String novaDescricao) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    void DataVencimento(Date novaDataVencimento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
 }
 
 public class GestaoDeTarefas {
@@ -144,26 +132,44 @@ public class GestaoDeTarefas {
     }
 
     public static void atualizarTarefa() {
-        int indice = Integer.parseInt(JOptionPane.showInputDialog("Digite o número da tarefa que deseja atualizar:")) - 1;
+        if (listaTarefas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas para atualizar.");
+            return;
+        }
 
-        if (indice >= 0 && indice < listaTarefas.size()) {
-            String novoTitulo = JOptionPane.showInputDialog("Digite o novo título:");
-            String novaDescricao = JOptionPane.showInputDialog("Digite a nova descrição:");
-            String novaDataStr = JOptionPane.showInputDialog("Digite a nova data de vencimento (dd/MM/yyyy): ");
+        String tituloParaAtualizar = JOptionPane.showInputDialog("Digite o título da tarefa que deseja atualizar:");
 
-            try {
-                Date novaDataVencimento = dateFormat.parse(novaDataStr);
-                Tarefa tarefa = listaTarefas.get(indice);
-                tarefa.titulo = novoTitulo;
-                tarefa.descricao = novaDescricao;
-                tarefa.dataVencimento = novaDataVencimento;
-                JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso.");
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Data inválida. Verifique a data");
+        // Procura a tarefa com o título correspondente na lista
+        Tarefa tarefaEncontrada = null;
+        for (Tarefa tarefa : listaTarefas) {
+            if (tarefa.getTitulo().equalsIgnoreCase(tituloParaAtualizar)) {
+                tarefaEncontrada = tarefa;
+                break;
             }
-        } else {
+        }
+
+        if (tarefaEncontrada == null) {
             JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
+
+        }
+
+        // Solicita as novas informações da tarefa
+        String novoTitulo = JOptionPane.showInputDialog("Digite o novo título da tarefa:");
+        String novaDescricao = JOptionPane.showInputDialog("Digite a nova descrição da tarefa:");
+        String novaDataStr = JOptionPane.showInputDialog("Digite a nova data de vencimento (dd/MM/yyyy):");
+
+        try {
+            // Tenta converter a string de data em um objeto Date
+            Date novaDataVencimento = dateFormat.parse(novaDataStr);
+
+            // Atualiza os detalhes da tarefa
+            tarefaEncontrada.titulo = novoTitulo;
+            tarefaEncontrada.descricao = novaDescricao;
+            tarefaEncontrada.dataVencimento = novaDataVencimento;
+
+            JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar tarefa. Verifique a nova data.");
         }
     }
 
@@ -187,12 +193,10 @@ public class GestaoDeTarefas {
             }
         }
 
-        for (Tarefa tarefa : listaTarefas) {
-            // Exibe as listas de tarefas vencidas e não vencidas
-            if (tarefa.getDataVencimento().before(dataAtual)) {
-                JOptionPane.showMessageDialog(null, tarefasVencidas.toString(), "Tarefas Vencidas", JOptionPane.INFORMATION_MESSAGE);
-            }
-
+        if (tarefasVencidas.length() > 0) {
+            JOptionPane.showMessageDialog(null, tarefasVencidas.toString(), "Tarefas Vencidas", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Não há tarefas vencidas.");
         }
     }
 }
