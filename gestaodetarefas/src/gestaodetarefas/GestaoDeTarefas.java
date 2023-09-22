@@ -4,9 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import java.text.ParseException;
-// Classe que representa uma tarefa
 
+// Classe que representa uma tarefa
 class Tarefa {
 
     String titulo;
@@ -69,7 +68,7 @@ public class GestaoDeTarefas {
                     break;
 
                 case "Excluir Tarefa":
-
+                    excluirTarefa();
                     break;
 
                 case "Data de Vencimento das Tarefas":
@@ -115,7 +114,7 @@ public class GestaoDeTarefas {
     public static void listarTarefas() {
         // Se a lista de tarefas estiver vazia, exibe uma mensagem informativa
         if (listaTarefas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas.");
+            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas");
             return;
         }
 
@@ -133,7 +132,7 @@ public class GestaoDeTarefas {
 
     public static void atualizarTarefa() {
         if (listaTarefas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas para atualizar.");
+            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas para atualizar");
             return;
         }
 
@@ -149,7 +148,7 @@ public class GestaoDeTarefas {
         }
 
         if (tarefaEncontrada == null) {
-            JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
+            JOptionPane.showMessageDialog(null, "Tarefa não encontrada");
 
         }
 
@@ -167,16 +166,45 @@ public class GestaoDeTarefas {
             tarefaEncontrada.descricao = novaDescricao;
             tarefaEncontrada.dataVencimento = novaDataVencimento;
 
-            JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso.");
+            JOptionPane.showMessageDialog(null, "Tarefa atualizada com sucesso");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao atualizar tarefa. Verifique a nova data.");
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar tarefa. Verifique a nova data");
         }
+    }
+
+    public static void excluirTarefa() {
+        if (listaTarefas.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas para excluir");
+            return;
+        }
+
+        String tituloParaExcluir = JOptionPane.showInputDialog("Digite o título da tarefa que deseja excluir:");
+
+        // Procura a tarefa com o título correspondente na lista
+        Tarefa tarefaEncontrada = null;
+        for (Tarefa tarefa : listaTarefas) {
+            if (tarefa.getTitulo().equalsIgnoreCase(tituloParaExcluir)) {
+                tarefaEncontrada = tarefa;
+                break;
+            }
+        }
+
+        if (tarefaEncontrada == null) {
+            JOptionPane.showMessageDialog(null, "Tarefa não encontrada");
+            return;
+        }
+
+        // Remove a tarefa da lista
+        listaTarefas.remove(tarefaEncontrada);
+
+        JOptionPane.showMessageDialog(null, "Tarefa excluída com sucesso");
     }
 
     public static void VencimentoTarefas() {
         // Se a lista de tarefas estiver vazia, exibe uma mensagem informativa
         if (listaTarefas.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas.");
+            JOptionPane.showMessageDialog(null, "Não há tarefas cadastradas");
+            return;
         }
         //Cria um objeto que verifica a data atual do computador
         Date dataAtual = new Date();
@@ -196,7 +224,7 @@ public class GestaoDeTarefas {
         if (tarefasVencidas.length() > 0) {
             JOptionPane.showMessageDialog(null, tarefasVencidas.toString(), "Tarefas Vencidas", JOptionPane.WARNING_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "Não há tarefas vencidas.");
+            JOptionPane.showMessageDialog(null, "Não há tarefas vencidas");
         }
     }
 }
