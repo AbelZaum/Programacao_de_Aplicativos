@@ -11,14 +11,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-class Tarefa {
+class gestaodetarefas {
 
     String titulo;
     String descricao;
     Date dataVencimento;
 
     // Construtor da classe Tarefa
-    public Tarefa(String titulo, String descricao, Date dataVencimento) {
+    public gestaodetarefas (String titulo, String descricao, Date dataVencimento) {
         this.titulo = titulo;
         this.descricao = descricao;
         this.dataVencimento = dataVencimento;
@@ -155,6 +155,7 @@ public class GestaoDeTarefasTesteJframe {
                 JOptionPane.showMessageDialog(null, "Data inválida. Verifique a data");
             }
         } else {
+            cc--;
             JOptionPane.showMessageDialog(null, "Tarefa não encontrada.");
         }
 
@@ -223,12 +224,16 @@ public class GestaoDeTarefasTesteJframe {
     }
 
     public static void CreateJframe() {
+        //Cria as colunas da tabela
         model.addColumn("Titulo");
         model.addColumn("Descrição");
         model.addColumn("Data de Vencimento");
-
+        
+       
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Adiciona um componente gráfico "JScrollPane(table)" que contem uma tabela
         frame.getContentPane().add(new JScrollPane(table));
+        //Ajusta automaticamente o tamanho do JFrame
         frame.pack();
 
         // Obtém o tamanho da tela
@@ -244,8 +249,10 @@ public class GestaoDeTarefasTesteJframe {
     }
 
     public static void Jframe() {
+        //Zera as linhas da tabela
         model.setRowCount(0);
         for (Tarefa tarefa : listaTarefas) {
+            //Adiciona 
             Object[] rowData = {tarefa.getTitulo(), tarefa.getDescricao(),
                 dateFormat.format(tarefa.getDataVencimento())};
             model.addRow(rowData);
