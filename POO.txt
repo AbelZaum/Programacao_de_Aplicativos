@@ -1,0 +1,33 @@
+public class Carro {
+    private String marca;     // Atributo que armazena a marca do carro.
+    private String modelo;    // Atributo que armazena o modelo do carro.
+    private int ano;          // Atributo que armazena o ano de fabricação do carro.
+
+    // Construtor da classe, usado para inicializar os atributos.
+    public Carro(String marca, String modelo, int ano) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+    }
+
+    // Método que liga o carro e imprime uma mensagem.
+    public void ligar() {
+        System.out.println("O carro está ligado.");
+    }
+
+    // Método que desliga o carro e imprime uma mensagem.
+    public void desligar() {
+        System.out.println("O carro está desligado.");
+    }
+
+    public static void main(String[] args) {
+        // Cria uma instância da classe Carro com os valores especificados.
+        Carro meuCarro = new Carro("Toyota", "Corolla", 2022);
+
+        // Chama o método ligar() da instância meuCarro para ligar o carro.
+        meuCarro.ligar();
+
+        // Chama o método desligar() da instância meuCarro para desligar o carro.
+        meuCarro.desligar();
+    }
+}
