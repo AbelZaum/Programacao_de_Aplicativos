@@ -1,8 +1,0 @@
-GerenciadorTarefasComLoginGUI
-gestaodetarefas.Tarefa
-javaapplication1.JavaApplication1
-gestaodetarefas.Gestaodetarefas
-GerenciadorTarefasComLoginGUI$2
-Tarefa
-GerenciadorTarefasComLoginGUI$3
-GerenciadorTarefasComLoginGUI$1
